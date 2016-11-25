@@ -247,6 +247,7 @@ module.exports = {
     },
     "globals": {
         "it": true,
-        "describe": true
+        "describe": true,
+        "beforeEach": true
     }
 };

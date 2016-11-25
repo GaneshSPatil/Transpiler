@@ -1,8 +1,10 @@
 const NumberNode = require('./NumberNode.js');
+const util = require('../lib/util.js');
+const getNumber = util.getNumber;
 
 const operators = {
   '+': function(num1, num2) {
-    return num1.value + num2.value;
+    return getNumber(num1).value + getNumber(num2).value;
   }
 };
 
