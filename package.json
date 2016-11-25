@@ -1,0 +1,27 @@
+{
+  "name": "transpiler",
+  "version": "0.0.1",
+  "description": "a simple transpiler which converts js code from es5 to es6",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/eslint src test && ./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaneshSPatil/Transpiler.git"
+  },
+  "author": "Ganesh Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GaneshSPatil/Transpiler/issues"
+  },
+  "homepage": "https://github.com/GaneshSPatil/Transpiler#readme",
+  "devDependencies": {
+    "assertthat": "^0.8.2",
+    "eslint": "^3.10.2",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "jison": "^0.4.17"
+  }
+}
