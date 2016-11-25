@@ -1,13 +1,15 @@
 const util = {};
 
-const getNumber = function(node, variables) {
-  if (node.type === 'Number') {
+const primitiveTypes = ['Number', 'Boolean'];
+
+const getPrimitive = function(node, variables) {
+  if (primitiveTypes.includes(node.type)) {
     return node;
   }
 
-  return getNumber(node.evaluate(variables));
+  return getPrimitive(node.evaluate(variables));
 };
 
-util.getNumber = getNumber;
+util.getNumber = getPrimitive;
 
 module.exports = util;

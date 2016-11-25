@@ -17,15 +17,21 @@
 '*'                          return '*'
 '('                          return '('
 ')'                          return ')'
+'>'                          return '>'
+'<'                          return '<'
+'!'                          return '!'
 [a-z]                        return 'VARIABLE';
 <<EOF>>                      return 'EOF';
 
 /lex
 
 /* operator associations and precedence */
+%left '>' '<'
 %left '+' '-'
+%left '!'
 %left '*' '/'
 %left '%'
+%left '='
 
 %{
     var path = require('path');
@@ -82,4 +88,14 @@ e
         {$$ = new nodes.VariableNode($1);}
     | boolean
         {$$ = new nodes.BooleanNode($1);}
+    | e '<' '=' e
+        {$$ = new nodes.RelationalOperatorNode('<=', [$1, $4]);}
+    | e '>' '=' e
+        {$$ = new nodes.RelationalOperatorNode('>=', [$1, $4]);}
+    | e '!' '=' e
+        {$$ = new nodes.RelationalOperatorNode('!=', [$1, $4]);}
+    | e '>' e
+        {$$ = new nodes.RelationalOperatorNode($2, [$1, $3]);}
+    | e '<' e
+        {$$ = new nodes.RelationalOperatorNode($2, [$1, $3]);}
     ;

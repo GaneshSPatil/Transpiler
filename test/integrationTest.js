@@ -21,7 +21,10 @@ const inputOutputMap = {
   'a=20; b=40; a+b': [20, 40, 60],
   'a=20 b=a a+b;': [20, 20, 40],
   'a=30; b=a; a=40; b;': [30, 30, 40, 30],
-  'true; false': [true, false]
+  'true; false': [true, false],
+  'a=2; b=4; a<b': [2, 4, true],
+  'a=2; b=2; a<=b': [2, 2, true],
+  'a=2; b=2; a>=b': [2, 2, true]
 };
 
 const assertInput = function(input, output) {
