@@ -11,6 +11,7 @@
 '+'                   return '+'
 '-'                   return '-'
 '/'                   return '/'
+'%'                   return '%'
 '*'                   return '*'
 '('                   return '('
 ')'                   return ')'
@@ -22,6 +23,7 @@
 /* operator associations and precedence */
 %left '+' '-'
 %left '*' '/'
+%left '%'
 
 %{
     var path = require('path');
@@ -71,6 +73,8 @@ e
     | e '/' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     | e '*' e
+        {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
+    | e '%' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     |  VARIABLE
         {$$ = new nodes.VariableNode($1);}

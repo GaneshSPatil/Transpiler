@@ -74,4 +74,20 @@ describe('Parse Arithmetic Expressions', () => {
 
     assert.that(result[0].value).is.equalTo(2);
   });
+
+  it('should parse a modulo expression input', () => {
+    const input = '3%2';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(1);
+  });
+
+  it('should parse a complex modulo expression input', () => {
+    const input = '12%7%3';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(2);
+  });
 });
