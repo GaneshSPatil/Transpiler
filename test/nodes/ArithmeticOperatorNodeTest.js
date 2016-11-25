@@ -2,7 +2,7 @@ const assert = require('assertthat');
 const nodes = require('../../src/nodes.js');
 
 describe('ArithmeticOperatorNode', () => {
-  it('should create a node for the addition operation', () => {
+  it('should create a node for the arithmetic operation', () => {
     const num1 = new nodes.NumberNode(1);
     const num2 = new nodes.NumberNode(2);
     const args = [num1, num2];
@@ -33,7 +33,7 @@ describe('ArithmeticOperatorNode', () => {
     assert.that(add.type).is.equalTo('Expression');
   });
 
-  it('should evaluate and return the addition', () => {
+  it('should evaluate and return the arithmetic operation result', () => {
     const num1 = new nodes.NumberNode(1);
     const num2 = new nodes.NumberNode(2);
     const args = [num1, num2];

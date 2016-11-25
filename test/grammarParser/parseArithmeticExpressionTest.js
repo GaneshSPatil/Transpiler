@@ -10,7 +10,7 @@ const variables = {};
 variables.list = {};
 variables.parent = null;
 
-describe('Parse Addition', () => {
+describe('Parse Arithmetic Expressions', () => {
   it('should parse an addition expression input', () => {
     const input = '1+2';
     const trees = new Parser(grammar).parse(input);
@@ -25,5 +25,21 @@ describe('Parse Addition', () => {
     const result = treesWalker.walk(trees, variables);
 
     assert.that(result[0].value).is.equalTo(10);
+  });
+
+  it('should parse a substraction expression input', () => {
+    const input = '2-2';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(0);
+  });
+
+  it('should parse a complex substraction expression input', () => {
+    const input = '5-3-1-1';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(0);
   });
 });
