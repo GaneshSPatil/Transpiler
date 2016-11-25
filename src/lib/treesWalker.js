@@ -10,11 +10,10 @@ const walk = function(trees, parentVariables) {
 
     resultHolder.push(value);
 
-return resultHolder;
+    return resultHolder;
   }, []);
 
-
-return result;
+  return result;
 };
 
 exports.walk = walk;

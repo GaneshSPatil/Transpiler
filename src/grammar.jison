@@ -6,6 +6,7 @@
 %%
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER';
+';'                   return ';'
 '+'                   return '+'
 '-'                   return '-'
 '/'                   return '/'
@@ -31,8 +32,23 @@
 %% /* language grammar */
 
 expressions
-    : e EOF
-        {return [$$];}
+    : MULTIPLE-STATEMENTS EOF
+        {return $$;}
+    ;
+MULTIPLE-STATEMENTS
+    : STATEMENT
+        {$$ = [$1] }
+    | STATEMENT ';'
+        {$$ = [$1]}
+    | STATEMENT MULTIPLE-STATEMENTS
+        { $$ = [$1].concat($2); }
+    | STATEMENT ';' MULTIPLE-STATEMENTS
+        { $$ = [$1].concat($3); }
+    ;
+
+STATEMENT
+    : e
+        {$$ = $1}
     ;
 
 e
