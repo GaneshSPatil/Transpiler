@@ -6,6 +6,7 @@
 %%
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER';
+[a-z]                 return 'VARIABLE';
 <<EOF>>               return 'EOF';
 
 /lex
@@ -21,10 +22,12 @@
 
 expressions
     : e EOF
-        {return $$;}
+        {return [$$];}
     ;
 
 e
     :  NUMBER
         {$$ = new nodes.NumberNode($1);}
+    |  VARIABLE
+        {$$ = new nodes.VariableNode($1);}
     ;
