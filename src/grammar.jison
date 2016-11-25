@@ -7,6 +7,7 @@
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER';
 ';'                   return ';'
+'='                   return '='
 '+'                   return '+'
 '-'                   return '-'
 '/'                   return '/'
@@ -49,6 +50,13 @@ MULTIPLE-STATEMENTS
 STATEMENT
     : e
         {$$ = $1}
+    | ASSIGNMENT
+        {$$ = $1}
+    ;
+
+ASSIGNMENT
+    : VARIABLE '=' e
+        {$$ = new nodes.AssignmentNode($1, $3);}
     ;
 
 e
