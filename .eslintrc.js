@@ -125,7 +125,7 @@ module.exports = {
         "no-lone-blocks": "error",
         "no-lonely-if": "error",
         "no-loop-func": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": "off",
         "no-mixed-operators": "error",
         "no-mixed-requires": "error",
         "no-multi-spaces": "error",
@@ -161,7 +161,7 @@ module.exports = {
         "no-shadow": "error",
         "no-shadow-restricted-names": "error",
         "no-spaced-func": "error",
-        "no-sync": "error",
+        "no-sync": "off",
         "no-tabs": "error",
         "no-template-curly-in-string": "error",
         "no-ternary": "error",
@@ -185,11 +185,13 @@ module.exports = {
         "no-warning-comments": "error",
         "no-whitespace-before-property": "error",
         "no-with": "error",
-        "object-curly-newline": "error",
+        "object-curly-newline": "off",
         "object-curly-spacing": "error",
         "object-property-newline": "error",
-        "object-shorthand": "error",
-        "one-var": "error",
+        "object-shorthand": "off",
+        "one-var": "off",
+        "no-console": "off",
+        "no-unused-vars": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": "error",
         "operator-linebreak": "error",
@@ -242,5 +244,9 @@ module.exports = {
         "wrap-regex": "error",
         "yield-star-spacing": "error",
         "yoda": "error"
+    },
+    "globals": {
+        "it": true,
+        "describe": true
     }
 };
