@@ -4,19 +4,21 @@
 %lex
 
 %%
-\s+                   /* skip whitespace */
-[0-9]+("."[0-9]+)?\b  return 'NUMBER';
-';'                   return ';'
-'='                   return '='
-'+'                   return '+'
-'-'                   return '-'
-'/'                   return '/'
-'%'                   return '%'
-'*'                   return '*'
-'('                   return '('
-')'                   return ')'
-[a-z]                 return 'VARIABLE';
-<<EOF>>               return 'EOF';
+\s+                          /* skip whitespace */
+[0-9]+("."[0-9]+)?\b         return 'NUMBER';
+'true'                       return 'boolean'
+'false'                      return 'boolean'
+';'                          return ';'
+'='                          return '='
+'+'                          return '+'
+'-'                          return '-'
+'/'                          return '/'
+'%'                          return '%'
+'*'                          return '*'
+'('                          return '('
+')'                          return ')'
+[a-z]                        return 'VARIABLE';
+<<EOF>>                      return 'EOF';
 
 /lex
 
@@ -78,4 +80,6 @@ e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     |  VARIABLE
         {$$ = new nodes.VariableNode($1);}
+    | boolean
+        {$$ = new nodes.BooleanNode($1);}
     ;

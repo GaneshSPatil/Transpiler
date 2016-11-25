@@ -20,7 +20,8 @@ const inputOutputMap = {
   'a=20;': [20],
   'a=20; b=40; a+b': [20, 40, 60],
   'a=20 b=a a+b;': [20, 20, 40],
-  'a=30; b=a; a=40; b;': [30, 30, 40, 30]
+  'a=30; b=a; a=40; b;': [30, 30, 40, 30],
+  'true; false': [true, false]
 };
 
 const assertInput = function(input, output) {
