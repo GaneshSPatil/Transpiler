@@ -1,15 +1,5 @@
 const NumberNode = require('./NumberNode.js');
-const util = require('../lib/util.js');
-const getNumber = util.getNumber;
-
-const operators = {
-  '+': function(num1, num2) {
-    return getNumber(num1).value + getNumber(num2).value;
-  },
-  '-': function(num1, num2) {
-    return getNumber(num1).value - getNumber(num2).value;
-  }
-};
+const operators = require('../lib/arithmeticOperations.js');
 
 const ArithmeticOperatorNode = function(op, args) {
   this.value = operators[op];

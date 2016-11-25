@@ -8,6 +8,8 @@
 [0-9]+("."[0-9]+)?\b  return 'NUMBER';
 '+'                   return '+'
 '-'                   return '-'
+'/'                   return '/'
+'*'                   return '*'
 '('                   return '('
 ')'                   return ')'
 [a-z]                 return 'VARIABLE';
@@ -17,6 +19,7 @@
 
 /* operator associations and precedence */
 %left '+' '-'
+%left '*' '/'
 
 %{
     var path = require('path');
@@ -40,6 +43,10 @@ e
     | e '+' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     | e '-' e
+        {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
+    | e '/' e
+        {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
+    | e '*' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     |  VARIABLE
         {$$ = new nodes.VariableNode($1);}
