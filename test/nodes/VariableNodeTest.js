@@ -24,7 +24,8 @@ describe('VariableNode', () => {
     const varA = new nodes.VariableNode('a');
     const variables = {};
 
-    variables[varA.value] = new nodes.NumberNode(1);
+    variables.list = {};
+    variables.list[varA.value] = new nodes.NumberNode(1);
 
     assert.that(varA.evaluate(variables).value).is.equalTo(1);
   });

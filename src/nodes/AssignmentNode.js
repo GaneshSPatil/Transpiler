@@ -1,3 +1,6 @@
+const util = require('../lib/util.js');
+const getNumber = util.getNumber;
+
 const AssignmentNode = function(variable, value) {
   this.value = variable;
   this.args = [value];
@@ -6,9 +9,11 @@ const AssignmentNode = function(variable, value) {
 
 AssignmentNode.prototype = {
   'evaluate': function(variables) {
-    variables.list[this.value] = this.args[0];
+    const number = getNumber(this.args[0], variables);
 
-    return this.args[0];
+    variables.list[this.value] = number;
+
+    return number;
   }
 };
 

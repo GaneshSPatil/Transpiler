@@ -9,7 +9,11 @@ const ArithmeticOperatorNode = function(op, args) {
 
 ArithmeticOperatorNode.prototype = {
   'evaluate': function(variables) {
-    return new NumberNode(this.args.reduce(this.value));
+    const self = this;
+
+    return new NumberNode(this.args.reduce(
+      (num1, num2) => self.value(num1, num2, variables))
+    );
   }
 };
 

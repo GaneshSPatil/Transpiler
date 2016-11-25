@@ -6,7 +6,7 @@ const VariableNode = function(variableName) {
 
 VariableNode.prototype = {
   'evaluate': function(variables) {
-    return variables[this.value];
+    return variables.list[this.value];
   }
 };
 

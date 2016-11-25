@@ -3,7 +3,7 @@ const walk = function(trees, parentVariables) {
   const variables = {};
 
   variables.list = {};
-  variables.parent = parentVariables;
+  variables.parent = null;
 
   const result = trees.reduce((resultHolder, tree) => {
     const value = tree[key](variables);

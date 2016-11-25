@@ -44,7 +44,7 @@ module.exports = {
             "never"
         ],
         "consistent-return": "error",
-        "consistent-this": "error",
+        "consistent-this": "off",
         "curly": "error",
         "default-case": "error",
         "dot-location": "error",
@@ -214,7 +214,7 @@ module.exports = {
         "semi": "error",
         "semi-spacing": "error",
         "sort-imports": "error",
-        "sort-keys": "error",
+        "sort-keys": "off",
         "sort-vars": "error",
         "space-before-blocks": "error",
         "space-before-function-paren": "off",
