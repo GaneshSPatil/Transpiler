@@ -17,6 +17,9 @@
 '*'                          return '*'
 '('                          return '('
 ')'                          return ')'
+'['                          return '['
+']'                          return ']'
+','                          return ','
 '>'                          return '>'
 '<'                          return '<'
 '!'                          return '!'
@@ -70,8 +73,8 @@ ASSIGNMENT
     ;
 
 e
-    :  NUMBER
-        {$$ = new nodes.NumberNode($1);}
+    :  DATA-TYPES
+        {$$ = $1;}
     | '(' e ')'
         {$$ = $2;}
     | e '+' e
@@ -86,8 +89,6 @@ e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     |  VARIABLE
         {$$ = new nodes.VariableNode($1);}
-    | boolean
-        {$$ = new nodes.BooleanNode($1);}
     | e '<' '=' e
         {$$ = new nodes.RelationalOperatorNode('<=', [$1, $4]);}
     | e '>' '=' e
@@ -98,4 +99,27 @@ e
         {$$ = new nodes.RelationalOperatorNode($2, [$1, $3]);}
     | e '<' e
         {$$ = new nodes.RelationalOperatorNode($2, [$1, $3]);}
+    ;
+
+DATA-TYPES
+    : NUMBER
+        {$$ = new nodes.NumberNode($1);}
+    | boolean
+        {$$ = new nodes.BooleanNode($1);}
+    | ARRAY
+        {$$ = new nodes.ArrayNode($1);}
+    ;
+
+ARRAY
+    : '[' ']'
+        {$$ = [];}
+    | '[' comma-seperated-values ']'
+        {$$ = $2;}
+    ;
+
+comma-seperated-values
+    : e
+        {$$ = $1}
+    | e ',' comma-seperated-values
+        {$$ = [$1].concat($3);}
     ;

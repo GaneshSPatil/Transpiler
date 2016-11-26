@@ -11,12 +11,28 @@ variables.list = {};
 variables.parent = null;
 
 describe('Assignment Expressions', () => {
-  it('should allow defining variables', () => {
+  it('should allow defining variables with numeric values', () => {
     const input = 'a=2;b=4';
     const trees = new Parser(grammar).parse(input);
     const result = treesWalker.walk(trees, variables);
 
     assert.that(result[0].value).is.equalTo(2);
     assert.that(result[1].value).is.equalTo(4);
+  });
+
+  it('should allow assigning boolean values', () => {
+    const input = 'a=true';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(true);
+  });
+
+  it('should allow assigning array values', () => {
+    const input = 'a=[1, 2, 3]';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value.length).is.equalTo(3);
   });
 });

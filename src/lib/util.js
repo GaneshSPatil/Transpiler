@@ -1,6 +1,6 @@
 const util = {};
 
-const primitiveTypes = ['Number', 'Boolean'];
+const primitiveTypes = ['Number', 'Boolean', 'Array'];
 
 const getPrimitive = function(node, variables) {
   if (primitiveTypes.includes(node.type)) {
