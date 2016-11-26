@@ -29,10 +29,11 @@ describe('Assignment Expressions', () => {
   });
 
   it('should allow assigning array values', () => {
-    const input = 'a=[1, 2, 3]';
+    const input = 'a=[1, 2, 3]; b=a';
     const trees = new Parser(grammar).parse(input);
     const result = treesWalker.walk(trees, variables);
 
     assert.that(result[0].value.length).is.equalTo(3);
+    assert.that(result[1].value.length).is.equalTo(3);
   });
 });

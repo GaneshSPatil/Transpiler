@@ -1,13 +1,13 @@
 const NumberNode = function(boolean) {
-  let value = boolean;
+   this.value = boolean;
 
-  if (value === 'true') {
-    value = true;
+  if (boolean === 'true') {
+    this.value = true;
   }
-  if (value === 'false') {
-    value = false;
+  if (boolean === 'false') {
+    this.value = false;
   }
-  this.value = value;
+
   this.args = [];
   this.type = 'Boolean';
 };
