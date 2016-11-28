@@ -1,9 +1,5 @@
-const walk = function(trees, parentVariables) {
+const walk = function(trees, variables) {
   const key = 'evaluate';
-  const variables = {};
-
-  variables.list = {};
-  variables.parent = parentVariables;
 
   const result = trees.reduce((resultHolder, tree) => {
     const value = tree[key](variables);

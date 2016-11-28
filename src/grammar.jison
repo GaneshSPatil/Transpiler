@@ -6,6 +6,7 @@
 %%
 \s+                          /* skip whitespace */
 [0-9]+("."[0-9]+)?\b         return 'NUMBER';
+'function'                   return 'FUNCTION';
 'true'                       return 'boolean';
 'false'                      return 'boolean';
 'if'                         return 'if';
@@ -28,7 +29,7 @@
 '>'                          return '>';
 '<'                          return '<';
 '!'                          return '!';
-[a-z]                        return 'VARIABLE';
+[a-z]+                       return 'VARIABLE';
 <<EOF>>                      return 'EOF';
 
 /lex
@@ -69,6 +70,8 @@ MULTIPLE-STATEMENTS
 STATEMENT
     : e
         {$$ = $1}
+        |FUNCTION-DEFINITION
+        {$$ = $1}
     | ASSIGNMENT
         {$$ = $1}
     | IF-ELSE
@@ -78,6 +81,20 @@ STATEMENT
 ASSIGNMENT
     : VARIABLE '=' e
         {$$ = new nodes.AssignmentNode($1, $3);}
+    ;
+
+FUNCTION-DEFINITION
+    : FUNCTION VARIABLE '(' COMMA-SEPERATED-VARIABLES ')' BLOCK
+        {$$ = new nodes.FunctionNode($2, $4, $6);}
+    | FUNCTION VARIABLE '(' ')' BLOCK
+        {$$ = new nodes.FunctionNode($2, [], $5);}
+    ;
+
+COMMA-SEPERATED-VARIABLES
+    : VARIABLE
+        {$$ = [new nodes.VariableNode($1)];}
+    | VARIABLE ',' COMMA-SEPERATED-VARIABLES
+        {$$ = [new nodes.VariableNode($1)].concat($3); }
     ;
 
 IF-ELSE

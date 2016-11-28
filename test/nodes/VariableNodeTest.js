@@ -24,6 +24,8 @@ describe('VariableNode', () => {
     const varA = new nodes.VariableNode('a');
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.list[varA.value] = new nodes.NumberNode(1);
 

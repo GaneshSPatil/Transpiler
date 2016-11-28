@@ -33,6 +33,8 @@ describe('IfElseNode', () => {
     const conditional = new nodes.IfElseNode(new nodes.BooleanNode(true), ifBlock, []);
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.parent = variables;
 
@@ -46,6 +48,8 @@ describe('IfElseNode', () => {
     const conditional = new nodes.IfElseNode(pred, ifBlock, []);
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.parent = variables;
 
@@ -58,6 +62,8 @@ describe('IfElseNode', () => {
     const conditional = new nodes.IfElseNode(new nodes.BooleanNode(false), [], elseBlock);
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.parent = variables;
 
@@ -68,6 +74,8 @@ describe('IfElseNode', () => {
     const conditional = new nodes.IfElseNode(new nodes.BooleanNode(true), [], []);
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.parent = variables;
 
@@ -77,6 +85,8 @@ describe('IfElseNode', () => {
   it('should return undefined when the evaluated elseblock is empty', () => {
     const conditional = new nodes.IfElseNode(new nodes.BooleanNode(false), [], []);
     const variables = {};
+
+    variables.functions = {};
 
     variables.list = {};
     variables.parent = variables;

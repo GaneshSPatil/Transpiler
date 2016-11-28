@@ -7,6 +7,7 @@ const BooleanNode = require('./nodes/BooleanNode.js');
 const ArrayNode = require('./nodes/ArrayNode.js');
 const IfElseNode = require('./nodes/IfElseNode.js');
 const UndefinedNode = require('./nodes/UndefinedNode.js');
+const FunctionNode = require('./nodes/FunctionNode.js');
 
 const allNodes = {
   'ArithmeticOperatorNode': ArithmeticOperatorNode,
@@ -17,7 +18,8 @@ const allNodes = {
   'BooleanNode': BooleanNode,
   'ArrayNode': ArrayNode,
   'IfElseNode': IfElseNode,
-  'UndefinedNode': UndefinedNode
+  'UndefinedNode': UndefinedNode,
+  'FunctionNode': FunctionNode
 };
 
 module.exports = allNodes;

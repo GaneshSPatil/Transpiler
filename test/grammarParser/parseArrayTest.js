@@ -8,6 +8,8 @@ const treesWalker = require('../../src/lib/treesWalker.js');
 
 const variables = {};
 
+variables.functions = {};
+
 variables.list = {};
 variables.parent = variables;
 

@@ -7,6 +7,7 @@ const grammar = fs.readFileSync('./src/grammar.jison', 'utf8');
 const treesWalker = require('../../src/lib/treesWalker.js');
 const variables = {};
 
+variables.functions = {};
 variables.list = {};
 variables.parent = variables;
 

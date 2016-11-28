@@ -28,6 +28,8 @@ describe('AssignmentNode', () => {
     const varA = new nodes.AssignmentNode('a', one);
     const variables = {};
 
+    variables.functions = {};
+
     variables.list = {};
     variables.parent = variables;
 
@@ -38,6 +40,8 @@ describe('AssignmentNode', () => {
     const one = new nodes.NumberNode(10);
     const varA = new nodes.AssignmentNode('a', one);
     const variables = {};
+
+    variables.functions = {};
 
     variables.list = {};
     variables.parent = variables;
