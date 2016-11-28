@@ -1,5 +1,4 @@
 const assert = require('assertthat');
-const nodes = require('../src/nodes.js');
 
 const Parser = require('jison').Parser;
 const fs = require('fs');
@@ -8,7 +7,7 @@ const treesWalker = require('../src/lib/treesWalker.js');
 const variables = {};
 
 variables.list = {};
-variables.parent = null;
+variables.parent = variables;
 
 const inputOutputMap = {
   '1+2;': [3],
@@ -24,7 +23,8 @@ const inputOutputMap = {
   'true; false': [true, false],
   'a=2; b=4; a<b': [2, 4, true],
   'a=2; b=2; a<=b': [2, 2, true],
-  'a=2; b=2; a>=b': [2, 2, true]
+  'a=2; b=2; a>=b': [2, 2, true],
+  'a=true; if(a) { a; }': [true, true]
 };
 
 const assertInput = function(input, output) {

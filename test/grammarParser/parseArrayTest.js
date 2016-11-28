@@ -9,7 +9,7 @@ const treesWalker = require('../../src/lib/treesWalker.js');
 const variables = {};
 
 variables.list = {};
-variables.parent = null;
+variables.parent = variables;
 
 describe('Parse Array', () => {
 

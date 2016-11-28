@@ -5,6 +5,8 @@ const RelationalOperatorNode = require('./nodes/RelationalOperatorNode.js');
 const AssignmentNode = require('./nodes/AssignmentNode.js');
 const BooleanNode = require('./nodes/BooleanNode.js');
 const ArrayNode = require('./nodes/ArrayNode.js');
+const IfElseNode = require('./nodes/IfElseNode.js');
+const UndefinedNode = require('./nodes/UndefinedNode.js');
 
 const allNodes = {
   'ArithmeticOperatorNode': ArithmeticOperatorNode,
@@ -13,7 +15,9 @@ const allNodes = {
   'NumberNode': NumberNode,
   'VariableNode': VariableNode,
   'BooleanNode': BooleanNode,
-  'ArrayNode': ArrayNode
+  'ArrayNode': ArrayNode,
+  'IfElseNode': IfElseNode,
+  'UndefinedNode': UndefinedNode
 };
 
 module.exports = allNodes;

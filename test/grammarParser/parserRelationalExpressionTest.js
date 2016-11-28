@@ -8,7 +8,7 @@ const treesWalker = require('../../src/lib/treesWalker.js');
 const variables = {};
 
 variables.list = {};
-variables.parent = null;
+variables.parent = variables;
 
 describe('Parse Relational Expressions', () => {
   it('should parse a greater than expression input', () => {

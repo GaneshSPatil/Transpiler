@@ -6,23 +6,28 @@
 %%
 \s+                          /* skip whitespace */
 [0-9]+("."[0-9]+)?\b         return 'NUMBER';
-'true'                       return 'boolean'
-'false'                      return 'boolean'
-';'                          return ';'
-'='                          return '='
-'+'                          return '+'
-'-'                          return '-'
-'/'                          return '/'
-'%'                          return '%'
-'*'                          return '*'
-'('                          return '('
-')'                          return ')'
-'['                          return '['
-']'                          return ']'
-','                          return ','
-'>'                          return '>'
-'<'                          return '<'
-'!'                          return '!'
+'true'                       return 'boolean';
+'false'                      return 'boolean';
+'if'                         return 'if';
+'elsif'                      return 'elsif';
+'else'                       return 'else';
+';'                          return ';';
+'='                          return '=';
+'+'                          return '+';
+'-'                          return '-';
+'/'                          return '/';
+'%'                          return '%';
+'*'                          return '*';
+'('                          return '(';
+')'                          return ')';
+'['                          return '[';
+']'                          return ']';
+'{'                          return '{';
+'}'                          return '}';
+','                          return ',';
+'>'                          return '>';
+'<'                          return '<';
+'!'                          return '!';
 [a-z]                        return 'VARIABLE';
 <<EOF>>                      return 'EOF';
 
@@ -49,6 +54,7 @@ expressions
     : MULTIPLE-STATEMENTS EOF
         {return $$;}
     ;
+
 MULTIPLE-STATEMENTS
     : STATEMENT
         {$$ = [$1] }
@@ -65,11 +71,32 @@ STATEMENT
         {$$ = $1}
     | ASSIGNMENT
         {$$ = $1}
+    | IF-ELSE
+        {$$ = $1}
     ;
 
 ASSIGNMENT
     : VARIABLE '=' e
         {$$ = new nodes.AssignmentNode($1, $3);}
+    ;
+
+IF-ELSE
+    : 'if' '(' e ')' BLOCK
+        {$$ = new nodes.IfElseNode($3, $5, []);}
+    | 'if' '(' e ')' BLOCK ELSE
+        {$$ = new nodes.IfElseNode($3, $5, $6);}
+    ;
+
+ELSE
+  : 'else' BLOCK
+    { $$ = $2; }
+  | 'elsif' '(' e ')' BLOCK ELSE
+    {$$ = [new nodes.IfElseNode($3, $5, $6)]}
+  ;
+
+BLOCK
+    : '{' MULTIPLE-STATEMENTS '}'
+        {$$ = $2}
     ;
 
 e

@@ -8,7 +8,7 @@ const treesWalker = require('../../src/lib/treesWalker.js');
 const variables = {};
 
 variables.list = {};
-variables.parent = null;
+variables.parent = variables;
 
 describe('Assignment Expressions', () => {
   it('should allow defining variables with numeric values', () => {

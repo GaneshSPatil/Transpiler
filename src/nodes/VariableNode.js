@@ -1,3 +1,14 @@
+const UndefinedNode = require('./UndefinedNode.js');
+
+const findTillTop = function(value, variables) {
+
+  if (variables === variables.parent) {
+    return variables.list[value];
+  }
+
+  return variables.list[value] || findTillTop(value, variables.parent);
+};
+
 const VariableNode = function(variableName) {
   this.value = variableName;
   this.args = [];
@@ -6,7 +17,9 @@ const VariableNode = function(variableName) {
 
 VariableNode.prototype = {
   'evaluate': function(variables) {
-    return variables.list[this.value];
+    const value = findTillTop(this.value, variables);
+
+    return value || new UndefinedNode();
   }
 };
 

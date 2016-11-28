@@ -8,7 +8,7 @@ const treesWalker = require('../../src/lib/treesWalker.js');
 const variables = {};
 
 variables.list = {};
-variables.parent = null;
+variables.parent = variables;
 
 describe('Optional Semicolon Expressions', () => {
   it('should allow optional semicolons', () => {
