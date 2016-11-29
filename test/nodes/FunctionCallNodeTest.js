@@ -59,4 +59,21 @@ describe('FunctionCallNode', () => {
     assert.that(add.evaluate(variables).value).is.equalTo(3);
   });
 
+  it('should evaluate functions call', () => {
+    const name = 'add';
+    const args = [new nodes.NumberNode(1), new nodes.NumberNode(2)];
+    const add = new nodes.FunctionCallNode(name, args);
+
+    const variables = {};
+
+    variables.list = {};
+    variables.parent = variables;
+    variables.functions = {'add': {
+      'args': [new nodes.VariableNode('a'), new nodes.VariableNode('b')],
+      'block': []
+    }};
+
+    assert.that(add.evaluate(variables).value).is.equalTo(undefined);
+  });
+
 });

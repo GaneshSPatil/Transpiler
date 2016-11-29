@@ -50,4 +50,45 @@ describe('AssignmentNode', () => {
     assert.that(varA.evaluate(variables).value).is.equalTo(one.value);
     assert.that(variables.list.a.value).is.equalTo(10);
   });
+
+  it('should evaluate and override variable in the variables pool', () => {
+    const one = new nodes.NumberNode(10);
+    const varA = new nodes.AssignmentNode('a', one);
+    const variables = {};
+
+    variables.functions = {};
+    variables.list = {};
+    variables.parent = variables;
+
+    const childContext = {};
+
+    childContext.functions = {};
+    childContext.list = {'a': new nodes.NumberNode(50)};
+    childContext.parent = variables;
+
+
+    assert.that(childContext.list.a.value).is.equalTo(50);
+    assert.that(varA.evaluate(childContext).value).is.equalTo(one.value);
+    assert.that(childContext.list.a.value).is.equalTo(10);
+  });
+
+  it('should evaluate and override variable from the global variables pool', () => {
+    const one = new nodes.NumberNode(10);
+    const varA = new nodes.AssignmentNode('a', one);
+    const variables = {};
+
+    variables.functions = {};
+    variables.list = {'a': new nodes.NumberNode(50)};
+    variables.parent = variables;
+
+    const childContext = {};
+
+    childContext.functions = {};
+    childContext.list = {};
+    childContext.parent = variables;
+
+    assert.that(variables.list.a.value).is.equalTo(50);
+    assert.that(varA.evaluate(childContext).value).is.equalTo(one.value);
+    assert.that(variables.list.a.value).is.equalTo(10);
+  });
 });
