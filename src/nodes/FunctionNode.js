@@ -10,7 +10,10 @@ const FunctionNode = function(name, args, block) {
 
 FunctionNode.prototype = {
   'evaluate': function(variables) {
-    variables.functions[this.value] = this.block;
+    variables.functions[this.value] = {
+      'args': this.args,
+      'block': this.block
+    };
 
     return new UndefinedNode();
   }

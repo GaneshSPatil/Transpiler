@@ -35,7 +35,7 @@
 /lex
 
 /* operator associations and precedence */
-%left '>' '<'
+%left '>' '<' '(' ')'
 %left '+' '-'
 %left '!'
 %left '*' '/'
@@ -70,7 +70,7 @@ MULTIPLE-STATEMENTS
 STATEMENT
     : e
         {$$ = $1}
-        |FUNCTION-DEFINITION
+    | FUNCTION-DEFINITION
         {$$ = $1}
     | ASSIGNMENT
         {$$ = $1}
@@ -88,6 +88,18 @@ FUNCTION-DEFINITION
         {$$ = new nodes.FunctionNode($2, $4, $6);}
     | FUNCTION VARIABLE '(' ')' BLOCK
         {$$ = new nodes.FunctionNode($2, [], $5);}
+    ;
+
+FUNCTION-CALL
+    : VARIABLE FN-PARAMS
+        {$$ = new nodes.FunctionCallNode($1, $2);}
+    ;
+
+FN-PARAMS
+    : '(' ')'
+        {$$ = [];}
+    | '(' comma-seperated-values ')'
+        {$$ = $2; }
     ;
 
 COMMA-SEPERATED-VARIABLES
@@ -119,8 +131,6 @@ BLOCK
 e
     :  DATA-TYPES
         {$$ = $1;}
-    | '(' e ')'
-        {$$ = $2;}
     | e '+' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     | e '-' e
@@ -133,6 +143,8 @@ e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     |  VARIABLE
         {$$ = new nodes.VariableNode($1);}
+    | FUNCTION-CALL
+        {$$ = $1}
     | e '<' '=' e
         {$$ = new nodes.RelationalOperatorNode('<=', [$1, $4]);}
     | e '>' '=' e
@@ -163,7 +175,7 @@ ARRAY
 
 comma-seperated-values
     : e
-        {$$ = $1}
+        {$$ = [$1]}
     | e ',' comma-seperated-values
         {$$ = [$1].concat($3);}
     ;

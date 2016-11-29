@@ -2,7 +2,7 @@ const assert = require('assertthat');
 const nodes = require('../../src/nodes.js');
 
 describe('FunctionNode', () => {
-  it('should create a node for the number', () => {
+  it('should create a node for the function definition', () => {
     const name = 'add';
     const args = [new nodes.NumberNode(1), new nodes.NumberNode(2)];
 
@@ -14,7 +14,7 @@ describe('FunctionNode', () => {
     assert.that(add.value).is.equalTo('add');
   });
 
-  it('should not have arguments', () => {
+  it('should have params as arguments', () => {
     const name = 'add';
     const args = [new nodes.NumberNode(1), new nodes.NumberNode(2)];
 

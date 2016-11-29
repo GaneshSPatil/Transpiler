@@ -13,6 +13,7 @@ IfNodeNode.prototype = {
     const childContext = {};
 
     childContext.list = {};
+    childContext.functions = {};
     childContext.parent = variables;
 
     if (predicate) {
