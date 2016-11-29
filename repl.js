@@ -17,20 +17,30 @@ variables.list = {};
 variables.functions = {};
 variables.parent = variables;
 
+var buffer = '';
+
 var onAnswer = function(ans){
   try{
+    ans = buffer + ans;
     var trees = new Parser(grammar).parse(ans);
     var result = treesWalker.walk(trees, variables);
     result.forEach(function(r){ console.log(r.value); });
+    buffer = '';
   }catch(e){
     (trees != undefined) && trees.pop();
-    console.error(e.stack || e.message);
+    buffer = ans;
   }
   askQue();
 }
 
+var countBrackets = function(input) {
+  return input.split('{').length;
+};
+
 var askQue = function(){
-  rl.question('> ', onAnswer);
+  var extra = new Array(countBrackets(buffer)).join('..');
+  var que = buffer === '' ? '> ' : '.'.concat(extra);
+  rl.question(que, onAnswer);
 }
 
 askQue();
