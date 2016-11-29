@@ -12,6 +12,7 @@
 'if'                         return 'if';
 'elsif'                      return 'elsif';
 'else'                       return 'else';
+'eq'                         return 'eq';
 ';'                          return ';';
 '='                          return '=';
 '+'                          return '+';
@@ -36,7 +37,7 @@
 
 /* operator associations and precedence */
 %left '>' '<' '(' ')'
-%left '+' '-'
+%left '+' '-' 'eq'
 %left '!'
 %left '*' '/'
 %left '%'
@@ -133,6 +134,8 @@ e
         {$$ = $1;}
     | e '+' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
+    | e 'eq' e
+        {$$ = new nodes.RelationalOperatorNode('==', [$1, $3]);}
     | e '-' e
         {$$ = new nodes.ArithmeticOperatorNode($2, [$1, $3]);}
     | e '/' e

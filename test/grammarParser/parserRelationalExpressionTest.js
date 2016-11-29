@@ -108,4 +108,20 @@ describe('Parse Relational Expressions', () => {
 
     assert.that(result[0].value).is.equalTo(false);
   });
+
+  it('should parse a equal to expression input', () => {
+    const input = '2 eq 2';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(true);
+  });
+
+  it('should parse a complex equal to expression input', () => {
+    const input = '2 eq 2 eq true';
+    const trees = new Parser(grammar).parse(input);
+    const result = treesWalker.walk(trees, variables);
+
+    assert.that(result[0].value).is.equalTo(true);
+  });
 });

@@ -34,12 +34,14 @@ var onAnswer = function(ans){
 }
 
 var countBrackets = function(input) {
-  return input.split('{').length;
+  var openLength = input.split('{').length;
+  var closeLength = input.split('}').length;
+  return openLength - closeLength + 1;
 };
 
 var askQue = function(){
   var extra = new Array(countBrackets(buffer)).join('..');
-  var que = buffer === '' ? '> ' : '.'.concat(extra);
+  var que = buffer === '' ? '> ' : '.'.concat(extra).concat(' ');
   rl.question(que, onAnswer);
 }
 
