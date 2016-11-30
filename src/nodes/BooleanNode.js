@@ -1,4 +1,4 @@
-const NumberNode = function(boolean) {
+const BooleanNode = function(boolean) {
    this.value = boolean;
 
   if (boolean === 'true') {
@@ -12,10 +12,10 @@ const NumberNode = function(boolean) {
   this.type = 'Boolean';
 };
 
-NumberNode.prototype = {
+BooleanNode.prototype = {
   'evaluate': function(variables) {
     return this;
   }
 };
 
-module.exports = NumberNode;
+module.exports = BooleanNode;

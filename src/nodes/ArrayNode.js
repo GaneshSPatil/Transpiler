@@ -1,13 +1,13 @@
-const NumberNode = function(arrayElements) {
+const ArrayNode = function(arrayElements) {
   this.value = arrayElements;
   this.args = [];
   this.type = 'Array';
 };
 
-NumberNode.prototype = {
+ArrayNode.prototype = {
   'evaluate': function(variables) {
     return this;
   }
 };
 
-module.exports = NumberNode;
+module.exports = ArrayNode;
